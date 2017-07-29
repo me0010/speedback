@@ -23,7 +23,8 @@ class SpeedSign(ndb.Model):
   signId = ndb.StringProperty(required=True)
   roadName = ndb.StringProperty()
   speedLimit = ndb.StringProperty()
-  location = ndb.GeoPtProperty()
+  latitude = ndb.FloatProperty()
+  lonitude = ndb.FloatProperty()
 
 class SpeedFeedback(ndb.Model):
   location = ndb.GeoPtProperty()
@@ -33,15 +34,26 @@ class SpeedFeedback(ndb.Model):
 
 class AddNewSign(webapp2.RequestHandler):
   def get(self):
-    l = ndb.GeoPt(0,0)
-    ss = SpeedSign(signId="1",location = l,speedLimit="100",roadName="Rose Drive")
-    ss.put()
-    self.response.write("h")
+    try:
+        lat = self.request.get('lat')
+        latN = float(lat)
+        lng = self.request.get('lng')
+        lngN = float(lng)
+        signId = self.request.get('signId')
+        sLimit = self.request.get('speedlimit')
+        rName = self.request.get('roadname')
+        ss = SpeedSign(signId=signId,latitude = latN,lonitude = lngN,speedLimit=sLimit,roadName=rName)
+        ss.put()
+        self.response.write(lat)
+    except (TypeError, ValueError):
+        self.response.write("Fail")
 
 class GetSpeedSignData(webapp2.RequestHandler):
   def get(self):
     self.response.write('Hello world')
-    SpeedSign(signId="1").put()
+    lat = int(self.request.get('lat'))
+    lng = int(self.request.get('lng'))
+    self.response.write('OK')
 
 class GetFeedback(webapp2.RequestHandler):
   def get(self):
@@ -61,7 +73,7 @@ class DownloadFeedback(webapp2.RequestHandler):
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world!')
+        self.response.write('Helloworld!')
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
