@@ -50,10 +50,21 @@ class AddNewSign(webapp2.RequestHandler):
 
 class GetSpeedSignData(webapp2.RequestHandler):
   def get(self):
-    self.response.write('Hello world')
-    lat = int(self.request.get('lat'))
-    lng = int(self.request.get('lng'))
-    self.response.write('OK')
+    q = SpeedSign.query().filter(SpeedSign.latitude < -35.6).filter(SpeedSign.latitude > -35.8)
+    """ndb.AND(SpeedSign.latitude < -35.29999, SpeedSign.latitude > -35.29990))"""
+    self.response.write("<result>\n")
+    for s in q:
+        if s.lonitude < 149:
+            self.response.write("   <sign>\n")
+            self.response.write("       <signId>"+s.signId+"</signId>\n")
+            self.response.write("       <roadName>"+s.roadName+"</roadName>\n")
+            self.response.write("       <speedLimit>"+s.speedLimit+"</speedLimit>\n")
+            self.response.write("       </latitude>"+str(s.latitude)+"</latitude>\n")
+            self.response.write("       </lonitude>"+str(s.lonitude)+"</lonitude>\n")
+            self.response.write("   </sign>\n")
+    """lat = int(self.request.get('lat'))"""
+    """lng = int(self.request.get('lng'))"""
+    self.response.write('</result>')
 
 class GetFeedback(webapp2.RequestHandler):
   def get(self):
