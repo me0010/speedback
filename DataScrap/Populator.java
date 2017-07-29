@@ -31,7 +31,7 @@ class Populator{
   }
   private static void add(String lat, String lng, String signId, String limit, String roadName){
     try{
-      String url = "http://localhost:22081/newsign?lat=" +
+      String url = "http://localhost:22082/newsign?lat=" +
         lat +"&lng=" + lng + "&signId=" + signId + "&speedlimit=" + limit + "&roadname=" + URLEncoder.encode(roadName);
       URL obj = new URL(url);
       HttpURLConnection con = (HttpURLConnection) obj.openConnection();
