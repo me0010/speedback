@@ -129,6 +129,23 @@
           //console.log("http://localhost:22082/signdata?lat=" + map.getCenter().lat() +"&lng="+map.getCenter().lng())
           //console.log(x);
           parser = new DOMParser();
+          var baseURL = "/SpeedSignImages/";
+        /*  var icons = {
+            '1': {icons+"1km.png"},
+            '100': {icons+"100km.png"},
+            '2': {icons+"2km.png"},
+            '20': {icons+"20km.png"},
+            '25': {icons+"25km.png"},
+            '30': {icons+"30km.png"},
+            '110': {icons+"110km.png"},
+            '115': {icons+"115km.png"},
+            '40': {icons+"40km.png"},
+            '50': {icons+"50km.png"},
+            '60': {icons+"60km.png"},
+            '70': {icons+"70km.png"},
+            '80': {icons+"80km.png"},
+            '90': {icons+"90km.png"}
+          };*/
           var xmlNodes = ["signId", "roadName", "speedLimit","latitude","lonitude"];
           xmlDoc = parser.parseFromString(x,"text/xml");
           var s = xmlDoc.getElementsByTagName("sign");
@@ -142,6 +159,7 @@
             var myLatLng = {lat: parseFloat(latitude), lng: parseFloat(lonitude)};
             var marker = new google.maps.Marker({
                 position: myLatLng,
+                icon:"/SpeedSignImages/"+speedLimit+"km.png",
                 map: map,
                 title: 'Hello World!'
               });
@@ -152,6 +170,16 @@
 
         map.addListener('click', function(event) {
            console.log(event.latLng.lat());
+           var myCenter = new google.maps.LatLng(event.latLng.lat(),event.latLng.lng());
+           var marker = new google.maps.Marker({
+             position: myCenter,
+             map:map,
+             title: 'hello'
+           });
+           var infowindow = new google.maps.InfoWindow({
+             content: "Hello World!"
+           });
+           infowindow.open(infowindow,marker);
         });
         var card = document.getElementById('pac-card');
         var input = document.getElementById('pac-input');
