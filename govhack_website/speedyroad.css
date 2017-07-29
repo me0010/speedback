@@ -1,0 +1,72 @@
+@charset "utf-8";
+body {
+	color: #000000;
+	background-color: #FFFFFF;
+}
+
+#fullbody{
+	background-color: #f00828;
+	width: 100%;
+}
+#header{
+	background-color: #2734b4;
+	width: 100%;
+	height: 165px;
+}
+#mylogo {
+	position: relative;
+	float: left;
+	width: 40%;
+	max-width: 40%;
+	background-color: #FFFFFF;
+	padding: 10px 70px 10px 10px;
+}
+#logo {
+	float: right;
+	width: 35%;
+	height: 35%;
+	
+}
+#myheading {	
+	background-color: #FFFFFF;
+	padding: 10px 10px 10px 50px;
+}
+#title_heading {
+	font-size :90px;
+}
+#main{
+	background-color: #f10028;
+	width: 100%;
+}
+#report {
+	width: 100%;
+	background-color: #f00F28;	
+}
+#map {
+	width: 100%;
+	background-color: #f75428;	
+}
+#footer{
+	background-color: #f12800;
+	width: 100%;
+}
+#privacy {
+	width: 40%;
+	float: left;
+	background-color: #f33378;	
+}	
+#info {
+	width: 50%;
+	float: right;
+	background-color: #f44478;	
+}	
+#privacy {
+	width: 50%;
+	float: left;
+	background-color: #f33378;	
+}	
+#copyright {
+	width: 100%;	
+	background-color: #FFFFFF;	
+}	
+	
