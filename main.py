@@ -27,10 +27,9 @@ class SpeedSign(ndb.Model):
   lonitude = ndb.FloatProperty()
 
 class SpeedFeedback(ndb.Model):
-  location = ndb.GeoPtProperty()
-  signId = ndb.IntegerProperty()
-  decreaseSpeed = ndb.IntegerProperty()
-  date = ndb.DateTimeProperty()
+  decreaseSpeed = ndb.StringProperty()
+  latitude = ndb.FloatProperty()
+  lonitude = ndb.FloatProperty()
 
 class AddNewSign(webapp2.RequestHandler):
   def get(self):
@@ -73,18 +72,29 @@ class GetFeedback(webapp2.RequestHandler):
 class PlaceFeedback(webapp2.RequestHandler):
   def get(self):
     lat = self.request.get("lat")
-    lon = self.request.get("lon")
-    signId = self.request.get("signId")
+    latN = float(lat)
+    lon = self.request.get("lng")
+    lonN = float(lon)
     decrease = self.request.get("decrease")
-    self.response.write(lat)
+    fb = SpeedFeedback(decreaseSpeed=decrease,latitude=latN,lonitude=lonN)
+    fb.put()
+    self.response.write("OK")
 
 class DownloadFeedback(webapp2.RequestHandler):
   def get(self):
-    self.response.write('Hello world')
+    q = SpeedFeedback.query()
+    self.response.write("<SpeedFeedback>\n")
+    for r in q:
+        self.response.write("   <Feedback>\n")
+        self.response.write("       <DecreaseSpeed>"+r.decreaseSpeed+"</DecreaseSpeed>\n")
+        self.response.write("       <latitude>"+str(r.latitude)+"</latitude>\n")
+        self.response.write("       <lonitude>"+str(r.lonitude)+"</lonitude>\n")
+        self.response.write("   </Feedback>\n")
+    self.response.write("</SpeedFeedback>\n")
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Helloworld!')
+        self.response.write('Hello world')
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
@@ -92,5 +102,5 @@ app = webapp2.WSGIApplication([
     ('/signdata', GetSpeedSignData),
     ('/feedback', GetFeedback),
     ('/newfeedback', PlaceFeedback),
-    ('/download', DownloadFeedback)
+    ('/dload.xml', DownloadFeedback)
 ], debug=True)
