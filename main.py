@@ -67,7 +67,16 @@ class GetSpeedSignData(webapp2.RequestHandler):
 
 class GetFeedback(webapp2.RequestHandler):
   def get(self):
-    self.response.write('Hello world')
+    q = SpeedFeedback.query().filter(SpeedFeedback.latitude < -35.6).filter(SpeedFeedback.latitude > -35.8)
+    self.response.write("<SpeedFeedback>\n")
+    for r in q:
+        if r.lonitude < 149:
+            self.response.write("   <Feedback>\n")
+            self.response.write("       <DecreaseSpeed>"+r.decreaseSpeed+"</DecreaseSpeed>\n")
+            self.response.write("       <latitude>"+str(r.latitude)+"</latitude>\n")
+            self.response.write("       <lonitude>"+str(r.lonitude)+"</lonitude>\n")
+            self.response.write("   </Feedback>\n")
+    self.response.write("</SpeedFeedback>\n")
 
 class PlaceFeedback(webapp2.RequestHandler):
   def get(self):
