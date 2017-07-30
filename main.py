@@ -107,7 +107,8 @@ class DownloadFeedback(webapp2.RequestHandler):
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world')
+        self.redirect("/index.html")
+        """self.response.write('Hello world')"""
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
