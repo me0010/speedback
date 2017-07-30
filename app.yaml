@@ -26,11 +26,11 @@ handlers:
   upload: index\.html
 
 - url: /page2\.html
-  static_files: pages2.html
+  static_files: page2.html
   upload: page2\.html
 
 - url: /page3\.html
-  static_files: pages3.html
+  static_files: page3.html
   upload: page3\.html
 
 - url: /SpeedSignImages
