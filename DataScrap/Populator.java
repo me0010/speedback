@@ -11,7 +11,7 @@ import java.io.IOException;
 class Populator{
   public static void main(String[] args){
     try {
-			File file = new File("CleanACTData.csv");
+			File file = new File("CleanVICData.csv");
 			FileReader fileReader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			StringBuffer stringBuffer = new StringBuffer();

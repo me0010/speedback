@@ -49,13 +49,15 @@ class AddNewSign(webapp2.RequestHandler):
 
 class GetSpeedSignData(webapp2.RequestHandler):
   def get(self):
-    q = SpeedSign.query().filter(SpeedSign.latitude < -35.6).filter(SpeedSign.latitude > -35.8)
     lat = self.request.get('lat')
+    latN = float(lat)
     lng = self.request.get('lng')
+    lngN = float(lng)
+    q = SpeedSign.query().filter(SpeedSign.latitude > (latN-0.005)).filter(SpeedSign.latitude < (latN+0.005))
     """ndb.AND(SpeedSign.latitude < -35.29999, SpeedSign.latitude > -35.29990))"""
     self.response.write("<result>\n")
     for s in q:
-        if s.lonitude < 149:
+        if s.lonitude < (lngN+0.005) and s.lonitude > (lngN-0.005):
             self.response.write("   <sign>\n")
             self.response.write("       <signId>"+s.signId+"</signId>\n")
             self.response.write("       <roadName>"+s.roadName+"</roadName>\n")

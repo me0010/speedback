@@ -103,7 +103,16 @@
       <span id="place-name"  class="title"></span><br>
       <span id="place-address"></span>
     </div>
-
+    <script>
+      function TooFast(lat, lng){
+        //
+        var x = httpGet("http://localhost:22082/newfeedback?lat=" + lat +"&lng="+lng+"&decrease=Fast");
+      }
+      function TooSlow(lat, lng){
+        //
+        var x = httpGet("http://localhost:22082/newfeedback?lat=" + lat +"&lng="+lng+"&decrease=Slow");
+      }
+    </script>
     <script>
       // This example requires the Places library. Include the libraries=places
       // parameter when you first load the API. For example:
@@ -117,7 +126,7 @@
       }
       function initMap() {
          var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.8688, lng: 151.2195},
+          center: {lat: -35.2809, lng: 149.1300},
           zoom: 13
         });
 
@@ -155,7 +164,7 @@
             var speedLimit = s[i].getElementsByTagName (xmlNodes[2])[i].textContent;
             var latitude = s[i].getElementsByTagName (xmlNodes[3])[i].textContent;
             var lonitude = s[i].getElementsByTagName (xmlNodes[4])[i].textContent;
-            console.log(latitude);
+            //console.log(latitude);
             var myLatLng = {lat: parseFloat(latitude), lng: parseFloat(lonitude)};
             var marker = new google.maps.Marker({
                 position: myLatLng,
@@ -177,7 +186,9 @@
              title: 'hello'
            });
            var infowindow = new google.maps.InfoWindow({
-             content: "Hello World!"
+             content: "<h4>The speed limit is: </h4><button onclick=\"TooSlow("
+                + event.latLng.lat() +","+ event.latLng.lng() +")\">Too Slow</button><button onclick=\"TooFast("
+                + event.latLng.lat() +"," + event.latLng.lng() + " )\">Too Fast</button>"
            });
            infowindow.open(infowindow,marker);
         });
