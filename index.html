@@ -1,8 +1,12 @@
 <html>
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>speedback</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <meta charset="utf-8">
+   <script src="js/bootstrap.min.js"></script>
+   <script src="js/jquery.js"></script>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -13,6 +17,7 @@
       html, body {
         height: 100%;
         margin: 0;
+        margin-top: 35px;
         padding: 0;
       }
       #description {
@@ -85,6 +90,59 @@
     </style>
   </head>
   <body>
+
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">speedback</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="page1.html">About</a>
+                    </li>
+                     <li>
+                        <a href="page2.html">Privacy</a>
+                    </li>
+					 <li>
+                        <a href="page3.html">Open Data</a>
+                    </li>
+
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <div class="container-fluid">
+
+        <div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><img class="img-center center-block" src="small_logo_speedback.png" alt="logo" width="150" height="150">
+			</div>
+		</div>
+        <div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h2> <p class="text-center">speedback</p></h2>
+			</div>
+		</div>
+        <div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+
+
+
     <div class="pac-card" id="pac-card">
       <div>
         <div id="title">
@@ -103,6 +161,27 @@
       <span id="place-name"  class="title"></span><br>
       <span id="place-address"></span>
     </div>
+
+
+
+
+
+  </div>
+</div>
+    <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <h5><p class="text-center">Copyright &copy; speedback 2017</p></h5>
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
     <script>
       function TooFast(lat, lng){
         //

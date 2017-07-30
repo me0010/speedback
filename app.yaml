@@ -13,8 +13,37 @@ handlers:
   static_files: index.html
   upload: index\.html
 
+- url: /speedback\.css
+  static_files: speedback.css
+  upload: speedback\.css
+
+- url: /small_logo_speedback\.png
+  static_files: small_logo_speedback.png
+  upload: small_logo_speedback\.png
+
+- url: /page1\.html
+  static_files: page1.html
+  upload: index\.html
+
+- url: /page2\.html
+  static_files: pages2.html
+  upload: page2\.html
+
+- url: /page3\.html
+  static_files: pages3.html
+  upload: page3\.html
+
 - url: /SpeedSignImages
   static_dir: SpeedSignImages
+
+- url: /css
+  static_dir: css
+
+- url: /fonts
+  static_dir: fonts
+
+- url: /js
+  static_dir: js
 
 - url: .*
   script: main.app
